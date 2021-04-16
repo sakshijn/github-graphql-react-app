@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import { ApolloClient } from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
@@ -6,6 +6,7 @@ import { setContext } from 'apollo-link-context'
 import { HttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-boost'
 import Topics from './Topics';
+import RelatedTopics from './RelatedTopics';
 
 const httpLink = new HttpLink({ uri: 'https://api.github.com/graphql' })
 
@@ -28,12 +29,17 @@ const client = new ApolloClient({
 })
 
 const App = () => {
-  const topic = "react";
+  const intialTopic = 'react';
+  const [topic, setTopic] = useState('');
+  const handleEvent = (name) => {
+    setTopic(name);
+  };
   return (
     <ApolloProvider client={client}>
       <div className="App">
         <h1>GitHub API</h1>
-        <Topics topicName={topic}/>
+        <Topics topicName={intialTopic} onTopicClick={handleEvent}/>
+        {topic!=='' && <RelatedTopics relatedTopicName={topic}/>}
       </div>
       </ApolloProvider>
   );
