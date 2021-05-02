@@ -1,0 +1,8 @@
+Pending -
+Try to create reusable components.
+Separation of concern is important, have a separate data layer.
+Try to keep the components as close to pure as possible. Meaning no fetching the data inside the react components.
+If you can use styled-components and add the theme as well that would add a lot to weightage.
+
+Initial Task -
+Build a React web application that displays all the "topics" related to the term "react", using the GitHub GraphQL API. The application should display how many "stargazers" each topic has. A click on a topic should display the topics related to that topic, and how many stargazers they have. And so forth.
